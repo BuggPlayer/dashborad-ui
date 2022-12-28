@@ -18,15 +18,15 @@ const headers = [
   //   { title: "Reports", active: false, path: "/reports" },
 
   { title: "Dashboard", active: false },
-  { title: "Utilization", active: false },
-  { title: "People", active: false },
-  { title: "Projects", active: false },
+  { title: "Product", active: false },
+  { title: "Category", active: false },
+  { title: "Users", active: false },
   { title: "Revenue", active: false },
 ];
 
 const Header = () => {
-//   const location = useLocation();
-//   const navigate = useNavigate();
+  //   const location = useLocation();
+  //   const navigate = useNavigate();
   //   const { user, setUser } = useAuth();
   const [icons, setIcons] = useState(headers);
 
@@ -44,10 +44,24 @@ const Header = () => {
 
   //   const userDetails = JSON.parse(JSON.stringify(user || {}));
   return (
-    <div className="fixed w-full h-16 bg-white shadow-sm shadow-black-500/60 px-10 flex justify-between items-center z-50">
+    <div className="  w-full h-16 bg-white shadow-sm shadow-black-500/60 px-10 flex justify-between items-center z-50">
       <div className="flex space-x-2 items-center">
         <a href="">
-          <img src={"/assets/images/logo.svg"} alt="logo" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-8 h-8"
+          >
+            <path d="M19.006 3.705a.75.75 0 00-.512-1.41L6 6.838V3a.75.75 0 00-.75-.75h-1.5A.75.75 0 003 3v4.93l-1.006.365a.75.75 0 00.512 1.41l16.5-6z" />
+            <path
+              fill-rule="evenodd"
+              d="M3.019 11.115L18 5.667V9.09l4.006 1.456a.75.75 0 11-.512 1.41l-.494-.18v8.475h.75a.75.75 0 010 1.5H2.25a.75.75 0 010-1.5H3v-9.129l.019-.006zM18 20.25v-9.565l1.5.545v9.02H18zm-9-6a.75.75 0 00-.75.75v4.5c0 .414.336.75.75.75h3a.75.75 0 00.75-.75V15a.75.75 0 00-.75-.75H9z"
+              clip-rule="evenodd"
+            />
+          </svg>
+
+          {/* <img src={"/assets/images/logo.svg"} alt="logo" /> */}
         </a>
         <ul className="flex h-16 font-medium	 flex-1 ml-10 text-sm font-inter text-lightGrayColor  space-x-6 ">
           {icons.map((item, index) => (
@@ -64,9 +78,9 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex justify-end  items-center flex-1">
-        {/* <div className="flex relative mx-4">
+        <div className="flex relative mx-4">
           <img
-            src={'/assets/images/searchIcon.svg'}
+            src={"/assets/images/searchIcon.svg"}
             alt=""
             className="absolute top-0 bottom-0 left-4 w-5 h-5 m-auto"
           />
@@ -74,13 +88,17 @@ const Header = () => {
             placeholder=""
             className="border  outline-none text-left pl-12 placeholder:mr-3 border-gray-300 w-64 p-2 rounded-md"
           />
-        </div> */}
-        {/* <div className="relative w-7 h-7 mr-4 flex items-center">
-          <img src={'/assets/images/Avatar.svg'} alt="bellIcon" className="w-6 h-6" />
+        </div>
+        <div className="relative w-7 h-7 mr-4 flex items-center space-x-1">
+          <img
+            src={"/assets/images/Avatar.svg"}
+            alt="bellIcon"
+            className="w-6 h-6"
+          />
           <div className="absolute top-0 right-0 bg-red-500 rounded-full w-4 h-4 text-center">
             <p className="text-xs font-semibold	text-white">5</p>
           </div>
-        </div> */}
+        </div>
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <Menu.Button
