@@ -60,12 +60,11 @@ const ProductForm = ({ tableData }) => {
       rishDescription: richeDescription,
       mrp: mrp,
       weight: unit,
-      image:
-        "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80",
+      image: postImage,
       brand: brand,
       price: price,
       countInStock: countInStock,
-      category: categorValue,
+      categoryId: categorValue,
       status: "pending",
     };
 

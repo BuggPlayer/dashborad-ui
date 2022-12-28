@@ -70,7 +70,7 @@ export const ProductCols = [
   },
   {
     Header: "Category",
-    accessor: "category",
+    accessor: "category.name",
   },
   {
     Header: "Status",
@@ -79,6 +79,10 @@ export const ProductCols = [
   {
     Header: "RichDesciption",
     accessor: "rishDescription",
+  },
+  {
+    Header: "Unit",
+    accessor: "weight",
   },
 ];
 

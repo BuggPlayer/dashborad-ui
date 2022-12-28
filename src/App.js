@@ -6,7 +6,7 @@ import Routerss from "./Routerss";
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Routerss />
     </>
   );
