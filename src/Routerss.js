@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CategoryForm from "./Components/common/categoryForm/CategoryForm";
+import ProductForm from "./Components/common/productForm/ProductForm";
 import Category from "./Pages/Category/Category";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
@@ -15,6 +17,8 @@ const Routerss = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/user" element={<User />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/categoryForm" element={<CategoryForm />} />
+        <Route path="/productForm" element={<ProductForm />} />
         {/* <Route path="/people/:peopleId" element={<PeopleDetail />} /> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
