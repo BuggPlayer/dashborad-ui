@@ -1,17 +1,16 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useLocation , useNavigate } from "react-router-dom";
-import { BASEURL } from "../../../Apis/Apis";
+import { useLocation, useNavigate } from "react-router-dom";
+import API from "../../../Apis/Apis";
 
 const CategoryForm = () => {
   const uselocation = useLocation();
-  const usenavigate= useNavigate()
+  const usenavigate = useNavigate()
   console.log(uselocation?.state?.name);
   const [name, setName] = useState(uselocation?.state?.name || "");
   const [color, setColor] = useState(uselocation?.state?.color || "");
   const [postImage, setPostImage] = useState(
     uselocation?.state?.image ||
-      "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
+    "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
   );
 
   //cover Base64 methode
@@ -38,14 +37,10 @@ const CategoryForm = () => {
     e.preventDefault();
 
     if (uselocation?.state) {
-      axios({
-        method: "put",
-        url: `${BASEURL}updatecategory/${uselocation?.state?._id}`,
-        data: {
-          name: name,
-          color: color,
-          image: postImage,
-        },
+      API.put(`updatecategory/${uselocation?.state?._id}`, {
+        name: name,
+        color: color,
+        image: postImage,
       })
         .then((res) => {
           setName("");
@@ -54,26 +49,18 @@ const CategoryForm = () => {
             "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
           );
           usenavigate('/category')
-        //   console.log(res);
+          //   console.log(res);
         })
         .catch((err) => console.log(err));
     } else {
-      axios({
-        method: "post",
-        url: `${BASEURL}addcategory`,
-        data: {
-          name: name,
-          color: color,
-          image: postImage,
-        },
-      })
+      API.post('/addcategory', { name: name, color: color, image: postImage })
         .then((res) => {
           setName("");
           setColor("");
           setPostImage(
             "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
           );
-        //   console.log(res);
+          //   console.log(res);
         })
         .catch((err) => console.log(err));
     }
