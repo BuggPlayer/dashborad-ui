@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useState, useEffect, useMemo } from "react";
-import { BASEURL } from "../../Apis/Apis";
+import API from "../../Apis/Apis";
 import Loader from "../../Components/common/Loader/Loader";
 import ProductForm from "../../Components/common/productForm/ProductForm";
 import { ProductCols } from "../../Components/common/Table/Colums";
@@ -66,32 +65,26 @@ const Product = () => {
       status: "pending",
     };
 
-    console.log("data", data);
-    axios({
-      method: "post",
-      url: "http://localhost:8000/addproduct",
-      data: data,
-    })
+    // console.log("data", data);
+    API.post('/addproduct', data)
       .then((res) => {
         setPostImage({
           myFile:
             "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80",
         });
-        console.log("res", res);
-      })
-      .catch((err) => console.log(err));
+      }).catch((err) => console.log(err));
   };
 
   const getallcategoryData = () => {
-    axios({ method: "get", url: "http://localhost:8000/allcategory" })
+    API.get('/allcategory')
       .then((res) => {
         setTableData(res.data);
-        // console.log("res", res);
       })
       .catch((err) => console.log("err ", err));
+
   };
   const getallProductData = () => {
-    axios({ method: "get", url: `${BASEURL}allproducts` })
+    API.get('/allproducts')
       .then((res) => {
         setProductData(res.data.data);
         // console.log("res", res);
@@ -101,7 +94,7 @@ const Product = () => {
   useEffect(() => {
     getallcategoryData();
     getallProductData();
-  }, [tableData]);
+  }, []);
 
   // const columns = useMemo(() => COLUMS, []);
 

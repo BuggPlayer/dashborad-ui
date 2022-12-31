@@ -1,18 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
-import axios from "axios";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASEURL } from "../../../Apis/Apis";
+import API from "../../../Apis/Apis";
 
 export default function Modal({ isOpen, closeModal, data }) {
   const navigate = useNavigate();
   console.log("data", data);
   const deletecategory = () => {
     if (data?.color) {
-      axios({
-        method: "delete",
-        url: `${BASEURL}deletecategory/${data?._id}`,
-      })
+      API.delete(`/deletecategory/${data?._id}`)
         .then((res) => {
           // console.log("res", res);
           closeModal();
@@ -20,10 +16,7 @@ export default function Modal({ isOpen, closeModal, data }) {
 
         .catch((err) => console.log("err", err));
     } else {
-      axios({
-        method: "delete",
-        url: `${BASEURL}deleteproduct/${data?._id}`,
-      })
+      API.delete(`/deleteproduct/${data?._id}`)
         .then((res) => {
           console.log("res", res);
           closeModal();
