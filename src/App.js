@@ -1,14 +1,12 @@
 import "./App.css";
-
-import Header from "./Components/common/Header/Header";
+import { Authlayer, useAuthValue } from "./Context/Authcontext";
 import Routerss from "./Routerss";
 
 function App() {
   return (
-    <>
-      <Header />
+    <Authlayer>
       <Routerss />
-    </>
+    </Authlayer>
   );
 }
 

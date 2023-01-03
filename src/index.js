@@ -1,13 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Authlayer } from "./Context/Authcontext";
+import reducer, { initialState } from "./Context/reducer";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Authlayer initialState={initialState} reducer={reducer}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Authlayer>
   </React.StrictMode>
 );
 

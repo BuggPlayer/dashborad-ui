@@ -1,21 +1,30 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BASEURL } from "../../Apis/Apis";
+import { useAuthValue } from "../../Context/Authcontext";
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("nadeem@gmail.com");
+  const [password, setPassword] = useState("123456");
+  const [, dispatch] = useAuthValue();
+  // console.log("user", dispatch);
+  const getUserLogin = () => {
+    dispatch({ type: "SET_ITEM", payload: "singleItem" });
+    // axios({
+    //   method: "post",
+    //   url: "http://localhost:8000/auth/login",
+    //   data: { email: userName, password: password },
+    // })
+    //   .then((res) => {
+    //     console.log("res", res.data.token);
 
-  const LoginUser = () => {
-    axios({
-      method: "post",
-      url: `${BASEURL}`,
-    })
-      .then((res) => console.log("res", res))
-      .catch((err) => console.log("err", err));
+    //     dispatch({ type: "TOKEN", payload: "res?.data?.token" });
+    //   })
+    //   .catch((err) => console.log("err", err));
   };
+
   return (
-    <div className=" flex justify-center items-center h-80">
+    <div className=" flex justify-center  items-center h-screen">
       <div className="border  rounded-md p-5 w-1/3">
         <div className="flex flex-col">
           <lable className="text-gray-500 ">User name</lable>
@@ -50,7 +59,7 @@ const Login = () => {
 
         <div className="flex justify-end">
           <button
-            onClick={LoginUser}
+            onClick={getUserLogin}
             type="submit"
             className="border py-2 px-4 bg-indigo-100 rounded-md mt-4 font-bold capitalize  "
           >
