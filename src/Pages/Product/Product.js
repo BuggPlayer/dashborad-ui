@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useMemo } from "react";
-import API from "../../Apis/Apis";
+import { Getproducts } from "../../redux/action/product";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../Components/common/Loader/Loader";
 import ProductForm from "../../Components/common/productForm/ProductForm";
 import { ProductCols } from "../../Components/common/Table/Colums";
-import CommoneTable from "../../Components/common/Table/CommoneTable";
+
 import ReactTable from "../../Components/common/Table/ReactTable";
+import Error from "../../utilities/error/Error";
 
 const Product = () => {
+  const dispatch = useDispatch();
   const [tableData, setTableData] = useState([]);
   const [productData, setProductData] = useState(null);
+  const product = useSelector((satte) => satte.products.items);
 
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
@@ -75,44 +79,23 @@ const Product = () => {
       }).catch((err) => console.log(err));
   };
 
-  const getallcategoryData = () => {
-    API.get('/allcategory')
-      .then((res) => {
-        setTableData(res.data);
-      })
-      .catch((err) => console.log("err ", err));
-
-  };
-  const getallProductData = () => {
-    API.get('/allproducts')
-      .then((res) => {
-        setProductData(res.data.data);
-        // console.log("res", res);
-      })
-      .catch((err) => console.log("err ", err));
-  };
   useEffect(() => {
-    getallcategoryData();
-    getallProductData();
+    dispatch(Getproducts());
   }, []);
-
-  // const columns = useMemo(() => COLUMS, []);
-
-  console.log("tableDatapro", productData);
+  console.log(product);
   return (
     <>
+      <Loader />
+      <Error />
       <ProductForm tableData={tableData} />
       <div className="p-5 ">
-        <h2 className="py-10">Product Table</h2>
-
-        {productData ? (
-          <ReactTable columns={ProductCols} data={productData} />
-        ) : (
-          <Loader />
-        )}
+        <h2 className="py-4 font-bold text-lg">Product Table</h2>
+        <ReactTable columns={ProductCols} data={product} />
       </div>
     </>
   );
 };
 
 export default Product;
+
+// err loader and response

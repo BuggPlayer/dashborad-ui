@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useTable } from "react-table";
 import Modal from "../Modal/Modal";
 const ReactTable = (props) => {
+  // console.log("props", props);
   let [isOpen, setIsOpen] = useState(false);
   const [rowData, setRowData] = useState(null);
 
@@ -38,7 +39,6 @@ const ReactTable = (props) => {
   };
   return (
     <>
-     
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
